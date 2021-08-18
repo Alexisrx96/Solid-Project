@@ -8,7 +8,6 @@ import java.util.List;
 
 public class ReportSummary implements DataOperations {
 
-    //TODO: should have a custom constructor?
     @Getter
     @Setter
     private static int x;
@@ -21,16 +20,27 @@ public class ReportSummary implements DataOperations {
     private Date reportDateTime;
     @Getter
     @Setter
-    private int flightId;
+    private Flight flight;
     @Getter
     @Setter
-    private int userId;
+    private User user;
     @Getter
     @Setter
     private String reportStatus;
+    /*
+    //Optional
     @Getter
     @Setter
     private List<ReportDetail> reportDetails;
+    */
+
+    public ReportSummary(Flight flight, User user) {
+        this.flight = flight;
+        this.user = user;
+    }
+
+    public ReportSummary() {
+    }
 
     @Override
     public void readDataset(){

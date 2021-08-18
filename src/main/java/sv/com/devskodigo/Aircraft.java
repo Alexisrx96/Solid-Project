@@ -9,6 +9,16 @@ public class Aircraft implements DataOperations {
     @Setter
     private static int x;
 
+    @Getter
+    @Setter
+    private Airline airline;
+
+    public Aircraft(Airline airline) {
+        this.airline = airline;
+    }
+    public Aircraft() {
+    }
+
     @Override
     public void readDataset(){
 

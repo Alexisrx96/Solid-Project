@@ -18,6 +18,17 @@ public class City implements DataOperations {
     @Setter
     private static int x;
 
+    @Getter
+    @Setter
+    private Country country;
+
+    public City(Country country) {
+        this.country = country;
+    }
+
+    public City() {
+    }
+
     @Override
     public void readDataset(){
 

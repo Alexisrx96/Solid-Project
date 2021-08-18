@@ -7,7 +7,6 @@ import java.util.Date;
 
 public class ReportDetail implements DataOperations {
 
-    //TODO: should have a custom constructor?
     @Getter
     @Setter
     private static int x;
@@ -23,9 +22,21 @@ public class ReportDetail implements DataOperations {
     @Getter
     @Setter
     private String detailDescription;
+    /*
+    @Getter
+    @Setter
+    private int reportId;
+    */
     @Getter
     @Setter
     private ReportSummary reportSummary;
+
+    public ReportDetail(ReportSummary reportSummary) {
+        this.reportSummary = reportSummary;
+    }
+
+    public ReportDetail() {
+    }
 
     @Override
     public void readDataset(){
