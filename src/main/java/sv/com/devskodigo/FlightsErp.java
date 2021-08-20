@@ -8,6 +8,8 @@ comments:
 2. loop back to main menu
  */
 
+import sv.com.devskodigo.dto.ReportSummaryDto;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.FileWriter;
@@ -66,7 +68,7 @@ public class FlightsErp {
                 subMenuOption = rawData.nextInt();
                 switch (subMenuOption){
                     case 1:
-                        ReportSummary reportSummary = new ReportSummary();
+                        ReportSummaryDto reportSummary = new ReportSummaryDto();
                         break;
                     case 2:
                         //TODO

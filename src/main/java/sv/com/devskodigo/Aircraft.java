@@ -3,7 +3,7 @@ package sv.com.devskodigo;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Aircraft implements DataOperations {
+public class Aircraft{
 
     @Getter
     @Setter
@@ -19,33 +19,5 @@ public class Aircraft implements DataOperations {
     public Aircraft() {
     }
 
-    @Override
-    public void readDataset(){
 
-    }
-
-    @Override
-    public void addData(){
-
-    }
-
-    @Override
-    public void updateData(){
-
-    }
-
-    @Override
-    public void searchData(){
-
-    }
-
-    @Override
-    public void deleteData(){
-
-    }
-
-    @Override
-    public void updateStatus(){
-
-    }
 }

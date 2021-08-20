@@ -13,7 +13,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Country implements DataOperations {
+public class Country {
 
     @Getter
     @Setter
@@ -21,38 +21,4 @@ public class Country implements DataOperations {
     private String countryName;
     private float countryCoords;
 
-    public Country(){
-        readDataset();
-    }
-
-    @Override
-    public void readDataset(){
-        System.out.println("Hey buddy!");
-
-    }
-
-    @Override
-    public void addData(){
-
-    }
-
-    @Override
-    public void updateData(){
-
-    }
-
-    @Override
-    public void searchData(){
-
-    }
-
-    @Override
-    public void deleteData(){
-
-    }
-
-    @Override
-    public void updateStatus(){
-
-    }
 }

@@ -12,7 +12,7 @@ comments:
 import lombok.Getter;
 import lombok.Setter;
 
-public class City implements DataOperations {
+public class City  {
 
     @Getter
     @Setter
@@ -22,40 +22,4 @@ public class City implements DataOperations {
     @Setter
     private Country country;
 
-    public City(Country country) {
-        this.country = country;
-    }
-
-    public City() {
-    }
-
-    @Override
-    public void readDataset(){
-
-    }
-
-    @Override
-    public void addData(){
-
-    }
-
-    @Override
-    public void updateData(){
-
-    }
-
-    @Override
-    public void searchData(){
-
-    }
-
-    @Override
-    public void deleteData(){
-
-    }
-
-    @Override
-    public void updateStatus(){
-
-    }
 }

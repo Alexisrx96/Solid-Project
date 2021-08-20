@@ -9,11 +9,15 @@ comments:
 
  */
 
-public interface DataOperations {
+import sv.com.devskodigo.dto.ReportDetailDto;
+
+import java.util.List;
+
+public interface DataOperations<T> {
     void readDataset();
-    void addData();
-    void updateData();
-    void searchData();
-    void deleteData();
-    void updateStatus();
+    void addData(T t);
+    void updateData(T t);
+    List<T> dataList();
+    void searchData(int id);
+    void deleteData(int id);
 }
