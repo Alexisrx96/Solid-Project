@@ -1,8 +1,5 @@
 package sv.com.devskodigo.email;
 
-import lombok.Getter;
-import lombok.NonNull;
-
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
