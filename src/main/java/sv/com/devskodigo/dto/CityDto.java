@@ -1,4 +1,4 @@
-package sv.com.devskodigo;
+package sv.com.devskodigo.dto;
 
 /*
 name: City.java

@@ -3,7 +3,6 @@ package sv.com.devskodigo.dto;
 import lombok.Getter;
 import lombok.Setter;
 import sv.com.devskodigo.Flight;
-import sv.com.devskodigo.User;
 
 import java.util.Date;
 import java.util.List;
@@ -20,7 +19,7 @@ public class ReportSummaryDto {
     private Flight flight;
     @Getter
     @Setter
-    private User user;
+    private UserDto user;
     @Getter
     @Setter
     private String reportStatus;

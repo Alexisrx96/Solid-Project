@@ -8,6 +8,7 @@ comments:
 2. loop back to main menu
  */
 
+import sv.com.devskodigo.dao.toxlsx.CityToXlsx;
 import sv.com.devskodigo.dto.ReportSummaryDto;
 
 import java.util.InputMismatchException;
@@ -32,19 +33,19 @@ public class FlightsErp {
 
                 switch(subMenuOption){
                     case 1:
-                        Country country = new Country();
+
                         break;
                     case 2:
-                        City city = new City();
+                        CityToXlsx city = new CityToXlsx();
                         break;
                     case 3:
-                        Airline airline = new Airline();
+
                         break;
                     case 4:
-                        Aircraft aircraft = new Aircraft();
+
                         break;
                     case 5:
-                        User user = new User();
+
                         break;
                 }//end of catalog submenu options
                 break;

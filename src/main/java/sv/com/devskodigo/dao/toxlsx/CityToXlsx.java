@@ -17,7 +17,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import sv.com.devskodigo.CityDto;
+import sv.com.devskodigo.dto.CityDto;
 import sv.com.devskodigo.DataOperations;
 
 import java.io.File;
