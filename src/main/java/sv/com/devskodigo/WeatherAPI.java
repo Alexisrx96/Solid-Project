@@ -19,7 +19,7 @@ public class WeatherAPI {
         return map;
     }
 
-    public void getForecast() {
+    public String getForecast() {
         String forecast;
         String API_KEY = "3d533f0959fa1f766ffbd587fccfbaca";
         String LOCATION = "La%20Paz,sv";
@@ -44,10 +44,11 @@ public class WeatherAPI {
 
             forecast = mainMap.get("temp").toString()+"°C, "+ mainMap.get("humidity")+"%";
             System.out.println(forecast);
-            //return forecast;
+            return forecast;
 
         }catch(Exception error){
             System.out.println("error.getMessage() = " + error.getMessage());
+            return "Error";
         }
     }
 }

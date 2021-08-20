@@ -42,8 +42,8 @@ public class EmailSender extends PrivateEmailInformation{
             Email email = new Email(session);
             email.setFrom(emailSender.ownEmail);
             List<String> emailList =new ArrayList<>();
+            emailList.add("irvinrx1996@hotmail.com");
             emailList.add("irvinrexx@gmail.com");
-            emailList.add("hftamayo@gmail.com");
             email.setTo(emailList);
             email.addTextMessage("it's an example");
             email.setSubject("Testing");
