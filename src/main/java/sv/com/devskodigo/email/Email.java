@@ -23,6 +23,7 @@ public class Email {
         }
         message.addRecipients(Message.RecipientType.TO, to);
     }
+
     public void setFrom(String from) throws MessagingException{
         message.setFrom(new InternetAddress(from));
     }

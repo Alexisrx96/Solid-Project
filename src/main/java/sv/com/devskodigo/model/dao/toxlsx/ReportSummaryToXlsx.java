@@ -1,7 +1,7 @@
-package sv.com.devskodigo.dao.toxlsx;
+package sv.com.devskodigo.model.dao.toxlsx;
 
 import sv.com.devskodigo.DataOperations;
-import sv.com.devskodigo.dto.ReportSummaryDto;
+import sv.com.devskodigo.model.dto.ReportSummaryDto;
 
 import java.util.Iterator;
 import java.util.List;

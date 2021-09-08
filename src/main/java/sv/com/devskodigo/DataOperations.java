@@ -9,8 +9,6 @@ comments:
 
  */
 
-import sv.com.devskodigo.dto.ReportDetailDto;
-
 import java.util.List;
 
 public interface DataOperations<T> {

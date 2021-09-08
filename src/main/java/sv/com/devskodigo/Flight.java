@@ -8,7 +8,6 @@ comments:
 1. send a confirmation if dataSet was successfull
  */
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +15,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import sv.com.devskodigo.dto.FlightDto;
+import sv.com.devskodigo.model.dto.FlightDto;
 
 import java.io.File;
 import java.io.FileOutputStream;

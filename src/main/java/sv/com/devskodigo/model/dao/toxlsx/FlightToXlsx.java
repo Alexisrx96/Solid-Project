@@ -1,12 +1,12 @@
-package sv.com.devskodigo.dao.toxlsx;
+package sv.com.devskodigo.model.dao.toxlsx;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import sv.com.devskodigo.DataOperations;
-import sv.com.devskodigo.dto.FlightDto;
-import sv.com.devskodigo.dto.ReportSummaryDto;
+import sv.com.devskodigo.model.dto.FlightDto;
+import sv.com.devskodigo.model.dto.ReportSummaryDto;
 
 import java.io.File;
 import java.io.FileOutputStream;

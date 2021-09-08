@@ -1,29 +1,28 @@
-package sv.com.devskodigo.dao.toxlsx;
+package sv.com.devskodigo.model.dao.toxlsx;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import sv.com.devskodigo.DataOperations;
-import sv.com.devskodigo.dto.AircraftDto;
-import sv.com.devskodigo.dto.AirlineDto;
+import sv.com.devskodigo.model.dto.UserDto;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.*;
 
-public class AircraftToXlsx implements DataOperations<AircraftDto> {
+public class UserToXlsx implements DataOperations<UserDto> {
+
     private int menuOption;
     private Scanner rawData = new Scanner(System.in);
-
     XSSFWorkbook workbook;
     XSSFSheet sheet;
     Map<String, Object[]> data;
     int recordCounter = 1; //1 is Spreadsheet's Header
-    List cellDataList;
-    Iterator rowIterator;
+    List<List<String>> cellDataList;
+    Iterator<Row> rowIterator;
 
-    public AircraftToXlsx(){
+    public UserToXlsx(){
         readDataset();
     }
 
@@ -33,10 +32,10 @@ public class AircraftToXlsx implements DataOperations<AircraftDto> {
         rawData = new Scanner(System.in);
         try{
             workbook = new XSSFWorkbook();
-            sheet = workbook.createSheet("Aircraft");
+            sheet = workbook.createSheet("User");
             data = new TreeMap<String, Object[]>();
-            data.put("1", new Object[] {"ID", "AIRCRAFT_MODEL", "PASSENGER", "MAX_FUEL", "STATUS"});
-            System.out.println("Aircraft dataset loaded");
+            data.put("1", new Object[] {"ID", "FIRST_NAME", "LAST_NAME", "ACCOUNT_NAME", "PASSWORD", "STATUS"});
+            System.out.println("User dataset loaded");
         }catch(Exception ioe){
             System.out.println("Error during reading dataset routine");
             ioe.printStackTrace();
@@ -44,15 +43,13 @@ public class AircraftToXlsx implements DataOperations<AircraftDto> {
     }
 
 
-
     @Override
-    public void addData(AircraftDto t) {
+    public void addData(UserDto t) {
         String localRecordCounter;
         try{
             localRecordCounter = String.valueOf(recordCounter++);
-            data.put(localRecordCounter, new Object[] {t.getId(), t.getModel(), t.getPassengersCapacity(), t.getMaxFuel(), t.getStatus()});
+            data.put(localRecordCounter, new Object[] {t.getId(), t.getFirstName(), t.getLastName(), t.getAccountName(), t.getPassword(), t.getStatus()});
 
-            //it is necesary to iterate the data to savbe it into a row
             Set<String> keyset = data.keySet();
             int rownum = 0;
             for (String key : keyset)
@@ -72,7 +69,7 @@ public class AircraftToXlsx implements DataOperations<AircraftDto> {
                 }
             }
             //Write the workbook in file system
-            FileOutputStream out = new FileOutputStream(new File("Aircraft.xlsx"));
+            FileOutputStream out = new FileOutputStream(new File("user.xlsx"));
             workbook.write(out);
             out.close();
             System.out.println("Your data is saved");
@@ -80,32 +77,29 @@ public class AircraftToXlsx implements DataOperations<AircraftDto> {
             System.out.println("An error has ocurred");
             e.printStackTrace();
         }
-
     }
 
     @Override
-    public void updateData(AircraftDto aircraftDto) {
+    public void updateData(UserDto userDto) {
 
     }
-
     @Override
     public void searchData(int id) {
-        int aircraftTarget;
+        int UserTarget;
         int updateRowOperation = 0;
         boolean dataFound = false;
 
     }
 
-
     @Override
-    public List<AircraftDto> dataList() {
+    public List<UserDto> dataList() {
         try{
-            System.out.println("Displaying current list of Aircraft");
+            System.out.println("Displaying current list of users");
             //searchData routine
-            List<AircraftDto> aircraft = new ArrayList<>();
+            List<UserDto> user = new ArrayList<>();
             rowIterator = sheet.rowIterator();
             while (rowIterator.hasNext()) {
-                Row row = (Row) rowIterator.next();
+                Row row = rowIterator.next();
                 Iterator iterator = row.cellIterator();
                 List cellTempList = new ArrayList();
                 while (iterator.hasNext()) {
@@ -117,7 +111,7 @@ public class AircraftToXlsx implements DataOperations<AircraftDto> {
             if(cellDataList.size() > 0){
                 //print the content of the cellDataList
                 for (int i = 0; i < cellDataList.size(); i++) {
-                    List cellTempList = (List) cellDataList.get(i);
+                    List cellTempList = cellDataList.get(i);
                     for (int j = 0; j < cellTempList.size(); j++) {
                         Cell cell = (Cell) cellTempList.get(j);
                         String stringCellValue = cell.toString();
@@ -129,9 +123,9 @@ public class AircraftToXlsx implements DataOperations<AircraftDto> {
         }catch(Exception e){
             System.out.println("An error ocurred");
         }
-
         return null;
     }
+
 
 
     @Override

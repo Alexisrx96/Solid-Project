@@ -1,4 +1,4 @@
-package sv.com.devskodigo.dto;
+package sv.com.devskodigo.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;

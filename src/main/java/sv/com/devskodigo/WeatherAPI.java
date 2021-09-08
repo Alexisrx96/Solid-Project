@@ -24,6 +24,7 @@ public class WeatherAPI {
         String API_KEY = "3d533f0959fa1f766ffbd587fccfbaca";
         String LOCATION = "La%20Paz,sv";
         String urlString = "https://api.openweathermap.org/data/2.5/weather?q="+LOCATION+"&appid="+API_KEY+"&units=metric";
+
         try {
             StringBuilder result = new StringBuilder();
             URL url = new URL(urlString);
@@ -33,6 +34,7 @@ public class WeatherAPI {
             while((line = rd.readLine()) != null){
                 result.append(line);
             }
+
             rd.close();
 
             Map<String, Object> resMap = jsonToMap(result.toString());
@@ -51,4 +53,16 @@ public class WeatherAPI {
             return "Error";
         }
     }
+    /*
+    *
+     * User
+     * Flight
+     * Aircraft
+    * Airline
+    *
+    * ReportDetail
+    * ReportSummary
+     * City
+     * Country
+    * */
 }

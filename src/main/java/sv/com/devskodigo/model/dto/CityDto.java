@@ -1,4 +1,4 @@
-package sv.com.devskodigo.dto;
+package sv.com.devskodigo.model.dto;
 
 /*
 name: City.java
@@ -9,19 +9,25 @@ comments:
 
  */
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 
+@Getter @Setter
 public class CityDto{
-    @Getter @Setter
-    private int cityId;
-    @Getter @Setter
-    private String cityName;
-    @Getter @Setter
-    private float cityCoords;
-    @Getter @Setter
-    private int countryId;
+    public CityDto(){
 
+    }
+
+    public CityDto(int cityId, String cityName, float cityCoords, int countryId) {
+        this.cityId = cityId;
+        this.cityName = cityName;
+        this.cityCoords = cityCoords;
+        this.countryId = countryId;
+    }
+
+    private int cityId;
+    private String cityName;
+    private float cityCoords;
+    private int countryId;
 }

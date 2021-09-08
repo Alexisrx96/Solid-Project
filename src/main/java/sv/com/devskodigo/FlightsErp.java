@@ -8,13 +8,11 @@ comments:
 2. loop back to main menu
  */
 
-import sv.com.devskodigo.dao.toxlsx.CityToXlsx;
-import sv.com.devskodigo.dto.ReportSummaryDto;
+import sv.com.devskodigo.model.dto.ReportSummaryDto;
+import sv.com.devskodigo.model.dao.toxlsx.CityToXlsx;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class FlightsErp {
     private static Scanner rawData = new Scanner(System.in);
@@ -33,7 +31,6 @@ public class FlightsErp {
 
                 switch(subMenuOption){
                     case 1:
-
                         break;
                     case 2:
                         CityToXlsx city = new CityToXlsx();
@@ -56,8 +53,9 @@ public class FlightsErp {
                 System.out.println("3. update Flight's Status");
                 subMenuOption = rawData.nextInt();
                 switch (subMenuOption){
-                    case 1:
-                        //TODO
+                    case 4:
+                        Flight flight = new Flight();
+                        flight.getWeatherRpt();
                         break;
                 }//end of flight submenu options
                 break;
