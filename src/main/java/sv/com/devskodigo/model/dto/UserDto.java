@@ -6,11 +6,22 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserDto {
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String accountName;
-    private String password;
-    private int status;
+    public UserDto(int userId, String userFirstName, String userLastName, String userAccountName, String userPassword, int userStatus){
+        this.userId = userId;
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+        this.userAccountName = userAccountName;
+        this.userPassword = userPassword;
+        this.userStatus = userStatus;
+    }
+
+    public UserDto(){}
+
+    private int userId;
+    private String userFirstName;
+    private String userLastName;
+    private String userAccountName;
+    private String userPassword;
+    private int userStatus;
 
 }

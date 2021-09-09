@@ -1,30 +1,21 @@
 package sv.com.devskodigo.model.dao;
 
-import sv.com.devskodigo.model.dto.CountryDto;
+import sv.com.devskodigo.model.dto.AirlineDto;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CountryDao extends DbConnection implements IInsert<CountryDto>, IUpdate<CountryDto>, IRead<CountryDto, Integer> {
-    private static final String TABLE_NAME = "country";
+public class AirlineDao extends DbConnection implements IInsert<AirlineDto>,IUpdate<AirlineDto>,IRead<AirlineDto,Integer>{
+    private static final String TABLE_NAME = "airline";
     //Column names
-    private static final String COUNTRY_ID = "country_id";
-    private static final String COUNTRY_NAME = "country_name";
-    private static final String COUNTRY_COORDINATES = "country_coordinates";
+    private static final String AIRLINE_ID = "airline_id";
+    private static final String AIRLINE_NAME = "airline_name";
 
-    public static void main(String[] args) {
-        CountryDao countryDao = new CountryDao();
-        countryDao.insert(new CountryDto(0, "España", 205));
-        for (var c : countryDao.getList())
-            System.out.println(c);
-    }
-
-    @Override
-    public List<CountryDto> getList() {
+    public List<AirlineDto> list() {
         Connection conn = null;
-        List<CountryDto> list = new ArrayList<>();
-        try {
+        List<AirlineDto> list = new ArrayList<>();
+        try{
             conn = getConnection();
             String query = "SELECT * FROM %s".formatted(TABLE_NAME);
 
@@ -33,13 +24,12 @@ public class CountryDao extends DbConnection implements IInsert<CountryDto>, IUp
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                list.add(new CountryDto(
-                        rs.getInt(COUNTRY_ID),
-                        rs.getString(COUNTRY_NAME),
-                        rs.getFloat(COUNTRY_COORDINATES)
+                list.add(new AirlineDto(
+                        rs.getInt(AIRLINE_ID),
+                        rs.getString(AIRLINE_NAME)
                 ));
             }
-        } catch (SQLException e) {
+        }catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             if (conn != null) {
@@ -54,20 +44,23 @@ public class CountryDao extends DbConnection implements IInsert<CountryDto>, IUp
     }
 
     @Override
-    public CountryDto read(Integer id) {
+    public List<AirlineDto> getList() {
+        return null;
+    }
+
+    public AirlineDto read(Integer id) {
         Connection conn = null;
-        CountryDto country = null;
+        AirlineDto airline = null;
         try {
             conn = getConnection();
-            String query = "SELECT * FROM %s WHERE %s = ?".formatted(TABLE_NAME, COUNTRY_ID);
+            String query = "SELECT * FROM %s WHERE %s = ?".formatted(TABLE_NAME,AIRLINE_ID);
             PreparedStatement preparedStmt = conn.prepareStatement(query);
             preparedStmt.setInt(1, id);
             ResultSet rs = preparedStmt.executeQuery();
             if (rs.next()) {
-                country = new CountryDto(
-                        rs.getInt(COUNTRY_ID),
-                        rs.getString(COUNTRY_NAME),
-                        rs.getFloat(COUNTRY_COORDINATES)
+                airline = new AirlineDto(
+                        rs.getInt(AIRLINE_ID),
+                        rs.getString(AIRLINE_NAME)
                 );
             }
         } catch (SQLException e) {
@@ -81,18 +74,16 @@ public class CountryDao extends DbConnection implements IInsert<CountryDto>, IUp
                 }
             }
         }
-        return country;
+        return airline;
     }
 
-    @Override
-    public void insert(CountryDto t) {
+    public void insert(AirlineDto t) {
         Connection conn = null;
         try {
             conn = getConnection();
-            String query = "INSERT INTO %s (%s,%s) VALUES (?,?)".formatted(TABLE_NAME, COUNTRY_NAME, COUNTRY_COORDINATES);
+            String query = "INSERT INTO %s (%s) VALUES (?)".formatted(TABLE_NAME,AIRLINE_NAME);
             PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setString(1, t.getCountryName());
-            preparedStmt.setFloat(2, t.getCountryCoords());
+            preparedStmt.setString(1,t.getAirlineName());
             preparedStmt.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -107,18 +98,16 @@ public class CountryDao extends DbConnection implements IInsert<CountryDto>, IUp
         }
     }
 
-    @Override
-    public void update(CountryDto t) {
+    public void update(AirlineDto t) {
         Connection conn = null;
         try {
             conn = getConnection();
-            String query = "UPDATE %s SET %s = ?, %s = ?  WHERE %s = ?"
-                    .formatted(TABLE_NAME, COUNTRY_NAME, COUNTRY_COORDINATES, COUNTRY_ID);
+            String query = "UPDATE %s SET %s = ?  WHERE %s = ?"
+                    .formatted(TABLE_NAME,AIRLINE_NAME, AIRLINE_ID);
 
             PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setString(1, t.getCountryName());
-            preparedStmt.setFloat(2, t.getCountryCoords());
-            preparedStmt.setInt(3, t.getCountryId());
+            preparedStmt.setString(1, t.getAirlineName());
+            preparedStmt.setInt(2, t.getAirlineId());
 
             preparedStmt.executeUpdate();
         } catch (SQLException e) {
@@ -133,4 +122,6 @@ public class CountryDao extends DbConnection implements IInsert<CountryDto>, IUp
             }
         }
     }
+
+
 }

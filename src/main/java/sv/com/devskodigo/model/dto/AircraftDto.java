@@ -7,9 +7,22 @@ import lombok.Setter;
 @Setter
 public class AircraftDto {
 
-    private int id;
-    private String model;
-    private int passengersCapacity;
-    private float maxFuel;
-    private int status;
+
+    public AircraftDto(int aircraftId, String aircraftRegistration,String aircraftModel,int aircraftPassengersCapacity, float aircraftMaxFuel, int aircraftStatus){
+        this.aircraftId = aircraftId;
+        this.aircraftRegistration = aircraftRegistration;
+        this.aircraftModel = aircraftModel;
+        this.aircraftPassengersCapacity = aircraftPassengersCapacity;
+        this.aircraftMaxFuel = aircraftMaxFuel;
+        this.aircraftStatus = aircraftStatus;
+    }
+
+    public AircraftDto(){}
+
+    private int aircraftId;
+    private String aircraftRegistration;
+    private String aircraftModel;
+    private int aircraftPassengersCapacity;
+    private float aircraftMaxFuel;
+    private int aircraftStatus;
 }
