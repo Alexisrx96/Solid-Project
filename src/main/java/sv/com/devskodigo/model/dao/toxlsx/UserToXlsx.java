@@ -94,7 +94,7 @@ public class UserToXlsx implements DataOperations<UserDto> {
     @Override
     public List<UserDto> dataList() {
         try{
-            System.out.println("Displaying current list of users");
+            System.out.println("Displaying current getList of users");
             //searchData routine
             List<UserDto> user = new ArrayList<>();
             rowIterator = sheet.rowIterator();

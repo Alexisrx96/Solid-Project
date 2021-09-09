@@ -4,26 +4,26 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
 public class ReportSummaryDto {
-    public ReportSummaryDto(int reportId, Date reportDateTime, int flight, int user, String reportStatus) {
-        this.reportId = reportId;
-        this.reportDateTime = reportDateTime;
-        this.flight = flight;
-        this.user = user;
-        this.reportStatus = reportStatus;
-    }
-    public ReportSummaryDto() {
-    }
-
     private int reportId;
     private Date reportDateTime;
-    private int flight;
-    private int user;
-    private String reportStatus;
+    private int flightId;
+    private int userId;
+    private int reportStatusId;
+
+    public ReportSummaryDto(int reportId, Date reportDateTime, int flightId, int userId, int reportStatusId) {
+        this.reportId = reportId;
+        this.reportDateTime = reportDateTime;
+        this.flightId = flightId;
+        this.userId = userId;
+        this.reportStatusId = reportStatusId;
+    }
+
+    public ReportSummaryDto() {
+    }
     //Optional
     //private List<ReportDetailDto> reportDetails;
 }

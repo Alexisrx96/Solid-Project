@@ -33,7 +33,7 @@ public class CityDao extends DbConnection {
                         rs.getInt(COUNTRY_ID)
                 ));
             }
-        } catch ( SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             if (conn != null) {
@@ -52,7 +52,7 @@ public class CityDao extends DbConnection {
         CityDto city = null;
         try {
             conn = getConnection();
-            String query = "SELECT * FROM %s WHERE %s = ?".formatted(TABLE_NAME,CITY_ID);
+            String query = "SELECT * FROM %s WHERE %s = ?".formatted(TABLE_NAME, CITY_ID);
             PreparedStatement preparedStmt = conn.prepareStatement(query);
             preparedStmt.setInt(1, id);
             ResultSet rs = preparedStmt.executeQuery();
@@ -82,11 +82,11 @@ public class CityDao extends DbConnection {
         Connection conn = null;
         try {
             conn = getConnection();
-            String query = "INSERT INTO %s (%s,%s,%s) VALUES (?,?,?)".formatted(TABLE_NAME,CITY_NAME, CITY_COORDINATES, COUNTRY_ID);
+            String query = "INSERT INTO %s (%s,%s,%s) VALUES (?,?,?)".formatted(TABLE_NAME, CITY_NAME, CITY_COORDINATES, COUNTRY_ID);
             PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setString(1,t.getCityName());
-            preparedStmt.setFloat(2,t.getCityCoords());
-            preparedStmt.setInt(3,t.getCountryId());
+            preparedStmt.setString(1, t.getCityName());
+            preparedStmt.setFloat(2, t.getCityCoords());
+            preparedStmt.setInt(3, t.getCountryId());
             preparedStmt.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -106,7 +106,7 @@ public class CityDao extends DbConnection {
         try {
             conn = getConnection();
             String query = "UPDATE %s SET %s = ?, %s = ?, %s = ?  WHERE %s = ?"
-                    .formatted(TABLE_NAME,CITY_NAME, CITY_COORDINATES, COUNTRY_ID, CITY_ID);
+                    .formatted(TABLE_NAME, CITY_NAME, CITY_COORDINATES, COUNTRY_ID, CITY_ID);
 
             PreparedStatement preparedStmt = conn.prepareStatement(query);
             preparedStmt.setString(1, t.getCityName());

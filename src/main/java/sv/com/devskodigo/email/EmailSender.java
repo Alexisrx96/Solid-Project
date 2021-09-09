@@ -8,9 +8,9 @@ import javax.mail.*;
 
 public class EmailSender extends PrivateEmailInformation{
     @Getter
-    private String ownEmail;
-    private Properties properties;
-    private String host;
+    private final String ownEmail;
+    private final Properties properties;
+    private final String host;
 
     public EmailSender() {
         // Sender's email ID needs to be mentioned

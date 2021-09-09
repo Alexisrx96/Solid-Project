@@ -198,7 +198,7 @@ public class Flight implements DataOperations <FlightDto>{
         boolean dataFound = false;
 
         try{
-            System.out.println("Displaying current list of Flights");
+            System.out.println("Displaying current getList of Flights");
             //searchData routine
             cellDataList = new ArrayList();
             rowIterator = sheet.rowIterator();

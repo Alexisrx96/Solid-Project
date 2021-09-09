@@ -30,12 +30,12 @@ public class CityToXlsx implements DataOperations<CityDto> {
 
     private int menuOption;
     private Scanner rawData;
-    private String filePath = "city.xlsx";
+    private final String filePath = "city.xlsx";
     Map<String, Object[]> data;
     int recordCounter = 1; //1 is Spreadsheet's Header
     List cellDataList;
     Iterator rowIterator;
-    private Object[] header = new Object[]{"ID", "CITY_NAME", "GPS_COORDS", "COUNTRY_ID"};
+    private final Object[] header = new Object[]{"ID", "CITY_NAME", "GPS_COORDS", "COUNTRY_ID"};
 
     //constructor method
     public CityToXlsx() {
@@ -116,7 +116,7 @@ public class CityToXlsx implements DataOperations<CityDto> {
                         else if (obj instanceof Integer) //id
                             cell.setCellValue((Integer) obj);
                         else if (obj instanceof Date) //float
-                            cell.setCellValue(((Date) obj).toString());
+                            cell.setCellValue(obj.toString());
                         else if (obj instanceof ReportSummaryDto) //float
                             cell.setCellValue(((ReportSummaryDto) obj).getReportId());
                     }
@@ -184,7 +184,7 @@ public class CityToXlsx implements DataOperations<CityDto> {
         boolean dataFound = false;
 
         try {
-            System.out.println("Displaying current list of countries");
+            System.out.println("Displaying current getList of countries");
             //searchData routine
             XSSFWorkbook workbook = new XSSFWorkbook(filePath);
             XSSFSheet sheet = workbook.getSheetAt(0);

@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Email {
     private Address[] to;
-    private Multipart content;
-    private MimeMessage message;
+    private final Multipart content;
+    private final MimeMessage message;
     public Email(Session session) {
         message = new MimeMessage(session);
         content = new MimeMultipart();

@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportDetailDao  extends DbConnection {
+public class ReportDetailDao extends DbConnection {
     private static final String TABLE_NAME = "reportDetails";
     //Column names
     private static final String DETAILS_ID = "reportDetails_id";
@@ -35,7 +35,7 @@ public class ReportDetailDao  extends DbConnection {
                         rs.getInt(SUMMARY_ID)
                 ));
             }
-        } catch ( SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             if (conn != null) {
@@ -86,12 +86,12 @@ public class ReportDetailDao  extends DbConnection {
         try {
             conn = getConnection();
             String query = "INSERT INTO %s (%s,%s,%s,%s) VALUES (?,?,?,?)"
-                    .formatted(TABLE_NAME, DETAILS_DATETIME,DETAILS_DESCRIPTION, DETAILS_CLASIFICATION, SUMMARY_ID);
+                    .formatted(TABLE_NAME, DETAILS_DATETIME, DETAILS_DESCRIPTION, DETAILS_CLASIFICATION, SUMMARY_ID);
             PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setDate(1, new java.sql.Date( t.getDetailDateTime().getTime()));
-            preparedStmt.setString(2,t.getDetailDescription());
-            preparedStmt.setString(3,t.getDetailClassification());
-            preparedStmt.setInt(4,t.getReportSummaryId());
+            preparedStmt.setDate(1, new java.sql.Date(t.getDetailDateTime().getTime()));
+            preparedStmt.setString(2, t.getDetailDescription());
+            preparedStmt.setString(3, t.getDetailClassification());
+            preparedStmt.setInt(4, t.getReportSummaryId());
             preparedStmt.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -111,14 +111,14 @@ public class ReportDetailDao  extends DbConnection {
         try {
             conn = getConnection();
             String query = "UPDATE %s SET %s = ?, %s = ?, %s = ?, %s = ?  WHERE %s = ?"
-                    .formatted(TABLE_NAME, DETAILS_DATETIME,DETAILS_DESCRIPTION ,DETAILS_CLASIFICATION, SUMMARY_ID, DETAILS_ID);
+                    .formatted(TABLE_NAME, DETAILS_DATETIME, DETAILS_DESCRIPTION, DETAILS_CLASIFICATION, SUMMARY_ID, DETAILS_ID);
 
             PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setDate(1, new java.sql.Date( t.getDetailDateTime().getTime()));
-            preparedStmt.setString(2,t.getDetailDescription());
-            preparedStmt.setString(3,t.getDetailClassification());
-            preparedStmt.setInt(4,t.getReportSummaryId());
-            preparedStmt.setInt(5,t.getDetailId());
+            preparedStmt.setDate(1, new java.sql.Date(t.getDetailDateTime().getTime()));
+            preparedStmt.setString(2, t.getDetailDescription());
+            preparedStmt.setString(3, t.getDetailClassification());
+            preparedStmt.setInt(4, t.getReportSummaryId());
+            preparedStmt.setInt(5, t.getDetailId());
 
             preparedStmt.executeUpdate();
         } catch (SQLException e) {

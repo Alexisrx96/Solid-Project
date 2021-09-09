@@ -1,6 +1,9 @@
 package sv.com.devskodigo.model.dao.toxlsx;
 
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import sv.com.devskodigo.DataOperations;
@@ -14,9 +17,13 @@ import java.util.*;
 
 public class ReportDetailToXlsx implements DataOperations<ReportDetailDto> {
     private final String filePath = "ReportDetails.xlsx";
+    private final Object[] header = new Object[]{"ID", "DateTime", "Classification", "Description", "Report"};
     private Map<String, Object[]> data;
     private Iterator rowIterator;
-    private Object[] header = new Object[]{"ID", "DateTime", "Classification", "Description", "Report"};
+
+    public ReportDetailToXlsx() {
+        readDataset();
+    }
 
     public static void main(String[] args) {
 
@@ -26,14 +33,10 @@ public class ReportDetailToXlsx implements DataOperations<ReportDetailDto> {
         rd.setDetailClassification("my Clasification");
         rd.setDetailDescription("my Description");
         rd.setDetailDateTime(new Date());
-        rd.setReportSummary(new ReportSummaryDto());
-        rd.getReportSummary().setReportId(1);
+        //rd.setReportSummary(new ReportSummaryDto());
+        //rd.getReportSummary().setReportId(1);
         toXlsx.addData(rd);
         toXlsx.read();
-    }
-
-    public ReportDetailToXlsx() {
-        readDataset();
     }
 
     @Override
@@ -61,7 +64,7 @@ public class ReportDetailToXlsx implements DataOperations<ReportDetailDto> {
                         else if (obj instanceof Integer) //id
                             cell.setCellValue((Integer) obj);
                         else if (obj instanceof Date) //float
-                            cell.setCellValue(((Date) obj).toString());
+                            cell.setCellValue(obj.toString());
                         else if (obj instanceof ReportSummaryDto) //float
                             cell.setCellValue(((ReportSummaryDto) obj).getReportId());
                     }
@@ -85,20 +88,20 @@ public class ReportDetailToXlsx implements DataOperations<ReportDetailDto> {
             XSSFSheet sheet = workbook.createSheet("ReportDetails");
             data = new TreeMap<String, Object[]>();
             data.put("1", header);
-            for (int i = 0; i < dataList.size(); i++) {
+           /* for (int i = 0; i < dataList.size(); i++) {
                 final ReportDetailDto report = dataList.get(i);
                 data.put(String.valueOf(i + 2),
                         new Object[]{report.getDetailId(), report.getDetailDateTime(),
                                 report.getDetailClassification(), report.getDetailDescription(),
                                 report.getReportSummary()});
-            }
+            }*/
             //it is necessary to iterate the data to sabe it into a row
             int rownum = 0;
             Set<String> keyset = data.keySet();
             for (String key : keyset) {
                 Row row = sheet.createRow(rownum++);
                 Object[] objArr = data.get(key);
-                SimpleDateFormat formatter=new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
                 int cellnum = 0;
                 for (Object obj : objArr) {
                     Cell cell = row.createCell(cellnum++);
@@ -196,7 +199,7 @@ public class ReportDetailToXlsx implements DataOperations<ReportDetailDto> {
                             report.setDetailId((int) Double.parseDouble(cell));
                             break;
                         case 1:
-                            SimpleDateFormat formatter=new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+                            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
                             try {
                                 report.setDetailDateTime(formatter.parse(cell));
                             } catch (ParseException e) {
@@ -212,7 +215,7 @@ public class ReportDetailToXlsx implements DataOperations<ReportDetailDto> {
                         case 4:
                             ReportSummaryDto rs = new ReportSummaryDto();
                             rs.setReportId((int) Double.parseDouble(cell));
-                            report.setReportSummary(rs);
+                            //report.setReportSummary(rs);
                             break;
                     }
                     i++;

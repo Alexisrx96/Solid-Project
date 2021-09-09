@@ -11,7 +11,7 @@ public class ReportSummaryToXlsx implements DataOperations<ReportSummaryDto>{
     private final String filePath = "ReportDetails.xlsx";
     private Map<String, Object[]> data;
     private Iterator rowIterator;
-    private Object[] header = new Object[]{"ID", "DateTime", "Classification", "Description", "Report"};
+    private final Object[] header = new Object[]{"ID", "DateTime", "Classification", "Description", "Report"};
     @Override
     public void readDataset() {
 

@@ -81,5 +81,7 @@
     <orderEntry type="library" name="Maven: top.jfunc.json:Json-Gson:1.0" level="project" />
     <orderEntry type="library" name="Maven: com.solidfire.code.gson:gson:2.6.2" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20210307" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.24" level="project" />
+    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.11.4" level="project" />
   </component>
 </module>

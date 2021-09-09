@@ -17,7 +17,7 @@ public class FlightToXlsx implements DataOperations<FlightDto> {
     private int menuOption;
     private Scanner rawData;
     private String dtInput; //tempVar to get DateTimeInputData
-private String filePath="";
+private final String filePath="";
 private Object[] header;
     XSSFWorkbook workbook;
     XSSFSheet sheet;
@@ -53,7 +53,7 @@ private Object[] header;
                         else if (obj instanceof Integer) //id
                             cell.setCellValue((Integer) obj);
                         else if (obj instanceof Date) //float
-                            cell.setCellValue(((Date) obj).toString());
+                            cell.setCellValue(obj.toString());
                         else if (obj instanceof ReportSummaryDto) //float
                             cell.setCellValue(((ReportSummaryDto) obj).getReportId());
                     }

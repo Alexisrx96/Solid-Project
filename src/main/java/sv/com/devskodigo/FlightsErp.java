@@ -15,7 +15,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FlightsErp {
-    private static Scanner rawData = new Scanner(System.in);
+    private static final Scanner rawData = new Scanner(System.in);
 
     public static void showSubMenu(int mnu){
         int subMenuOption = 0;

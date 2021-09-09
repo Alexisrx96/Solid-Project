@@ -96,7 +96,7 @@ public class AircraftToXlsx implements DataOperations<AircraftDto> {
     @Override
     public List<AircraftDto> dataList() {
         try{
-            System.out.println("Displaying current list of Aircraft");
+            System.out.println("Displaying current getList of Aircraft");
             //searchData routine
             List<AircraftDto> aircraft = new ArrayList<>();
             rowIterator = sheet.rowIterator();
