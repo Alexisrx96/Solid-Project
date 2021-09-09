@@ -6,7 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CityDao extends DbConnection {
+public class CityDao extends DbConnection
+        implements IInsert<CityDto>,IUpdate<CityDto>,IRead<CityDto,Integer>{
     private static final String TABLE_NAME = "city";
     //Column names
     private static final String CITY_ID = "city_id";
@@ -14,7 +15,7 @@ public class CityDao extends DbConnection {
     private static final String CITY_COORDINATES = "city_coordinates";
     private static final String COUNTRY_ID = "country_id";
 
-    public List<CityDto> list() {
+    public List<CityDto> getList() {
         Connection conn = null;
         List<CityDto> list = new ArrayList<>();
         try {

@@ -6,7 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportDetailDao extends DbConnection {
+public class ReportDetailDao extends DbConnection
+        implements IInsert<ReportDetailDto>, IUpdate<ReportDetailDto>, IRead<ReportDetailDto, Integer> {
     private static final String TABLE_NAME = "reportDetails";
     //Column names
     private static final String DETAILS_ID = "reportDetails_id";
@@ -15,7 +16,7 @@ public class ReportDetailDao extends DbConnection {
     private static final String DETAILS_CLASIFICATION = "reportDetails_clasification";
     private static final String SUMMARY_ID = "reportSummary_id";
 
-    public List<ReportDetailDto> list() {
+    public List<ReportDetailDto> getList() {
         Connection conn = null;
         List<ReportDetailDto> list = new ArrayList<>();
         try {
