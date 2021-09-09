@@ -48,7 +48,7 @@ public class AirlineToXlsx implements DataOperations<AirlineDto> {
         String localRecordCounter;
         try{
             localRecordCounter = String.valueOf(recordCounter++);
-            data.put(localRecordCounter, new Object[] {t.getId(), t.getName()});
+            data.put(localRecordCounter, new Object[] {t.getAirlineId(), t.getAirlineName()});
 
             Set<String> keyset = data.keySet();
             int rownum = 0;

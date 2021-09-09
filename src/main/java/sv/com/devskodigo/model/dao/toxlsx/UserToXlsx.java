@@ -48,7 +48,7 @@ public class UserToXlsx implements DataOperations<UserDto> {
         String localRecordCounter;
         try{
             localRecordCounter = String.valueOf(recordCounter++);
-            data.put(localRecordCounter, new Object[] {t.getId(), t.getFirstName(), t.getLastName(), t.getAccountName(), t.getPassword(), t.getStatus()});
+            data.put(localRecordCounter, new Object[] {t.getUserId(), t.getUserFirstName(), t.getUserLastName(), t.getUserAccountName(), t.getUserPassword(), t.getUserStatus()});
 
             Set<String> keyset = data.keySet();
             int rownum = 0;

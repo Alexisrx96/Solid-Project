@@ -19,8 +19,8 @@ public class AircraftToXlsx implements DataOperations<AircraftDto> {
     XSSFSheet sheet;
     Map<String, Object[]> data;
     int recordCounter = 1; //1 is Spreadsheet's Header
-    List cellDataList;
-    Iterator rowIterator;
+    List<List<Cell>> cellDataList;
+    Iterator<Row> rowIterator;
 
     public AircraftToXlsx(){
         readDataset();
@@ -47,7 +47,7 @@ public class AircraftToXlsx implements DataOperations<AircraftDto> {
         String localRecordCounter;
         try{
             localRecordCounter = String.valueOf(recordCounter++);
-            data.put(localRecordCounter, new Object[] {t.getId(), t.getModel(), t.getPassengersCapacity(), t.getMaxFuel(), t.getStatus()});
+            data.put(localRecordCounter, new Object[] {t.getAircraftId(), t.getAircraftModel(), t.getAircraftPassengersCapacity(), t.getAircraftMaxFuel(), t.getAircraftStatus()});
 
             //it is necesary to iterate the data to savbe it into a row
             Set<String> keyset = data.keySet();
@@ -101,11 +101,11 @@ public class AircraftToXlsx implements DataOperations<AircraftDto> {
             List<AircraftDto> aircraft = new ArrayList<>();
             rowIterator = sheet.rowIterator();
             while (rowIterator.hasNext()) {
-                Row row = (Row) rowIterator.next();
-                Iterator iterator = row.cellIterator();
-                List cellTempList = new ArrayList();
+                Row row = rowIterator.next();
+                Iterator<Cell> iterator = row.cellIterator();
+                List<Cell> cellTempList = new ArrayList<>();
                 while (iterator.hasNext()) {
-                    Cell cell = (Cell) iterator.next();
+                    Cell cell = iterator.next();
                     cellTempList.add(cell);
                 }
                 cellDataList.add(cellTempList);
@@ -113,9 +113,9 @@ public class AircraftToXlsx implements DataOperations<AircraftDto> {
             if(cellDataList.size() > 0){
                 //print the content of the cellDataList
                 for (int i = 0; i < cellDataList.size(); i++) {
-                    List cellTempList = (List) cellDataList.get(i);
+                    List<Cell> cellTempList = cellDataList.get(i);
                     for (int j = 0; j < cellTempList.size(); j++) {
-                        Cell cell = (Cell) cellTempList.get(j);
+                        Cell cell = cellTempList.get(j);
                         String stringCellValue = cell.toString();
                         System.out.print(stringCellValue + "\t");
                     }

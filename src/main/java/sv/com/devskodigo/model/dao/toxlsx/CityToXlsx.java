@@ -33,8 +33,8 @@ public class CityToXlsx implements DataOperations<CityDto> {
     private final String filePath = "city.xlsx";
     Map<String, Object[]> data;
     int recordCounter = 1; //1 is Spreadsheet's Header
-    List cellDataList;
-    Iterator rowIterator;
+    List<List<Cell>> cellDataList;
+    Iterator<Row> rowIterator;
     private final Object[] header = new Object[]{"ID", "CITY_NAME", "GPS_COORDS", "COUNTRY_ID"};
 
     //constructor method
@@ -188,14 +188,14 @@ public class CityToXlsx implements DataOperations<CityDto> {
             //searchData routine
             XSSFWorkbook workbook = new XSSFWorkbook(filePath);
             XSSFSheet sheet = workbook.getSheetAt(0);
-            cellDataList = new ArrayList();
+            cellDataList = new ArrayList<List<Cell>>();
             rowIterator = sheet.rowIterator();
             while (rowIterator.hasNext()) {
-                Row row = (Row) rowIterator.next();
-                Iterator iterator = row.cellIterator();
-                List cellTempList = new ArrayList();
+                Row row = rowIterator.next();
+                Iterator<Cell> iterator = row.cellIterator();
+                List<Cell> cellTempList = new ArrayList<Cell>();
                 while (iterator.hasNext()) {
-                    Cell cell = (Cell) iterator.next();
+                    Cell cell = iterator.next();
                     cellTempList.add(cell);
                 }
                 cellDataList.add(cellTempList);
@@ -204,9 +204,9 @@ public class CityToXlsx implements DataOperations<CityDto> {
                 dataFound = true;
                 //print the content of the cellDataList
                 for (int i = 0; i < cellDataList.size(); i++) {
-                    List cellTempList = (List) cellDataList.get(i);
+                    List<Cell> cellTempList = cellDataList.get(i);
                     for (int j = 0; j < cellTempList.size(); j++) {
-                        Cell cell = (Cell) cellTempList.get(j);
+                        Cell cell = cellTempList.get(j);
                         String stringCellValue = cell.toString();
                         System.out.print(stringCellValue + "\t");
                     }
@@ -259,9 +259,9 @@ public class CityToXlsx implements DataOperations<CityDto> {
             while (rowIterator.hasNext()) {
                 CityDto city = new CityDto();
                 cities.add(city);
-                Row row = (Row) rowIterator.next();
+                Row row = rowIterator.next();
                 int i = 0;
-                Iterator iterator = row.cellIterator();
+                Iterator<Cell> iterator = row.cellIterator();
                 while (iterator.hasNext()) {
                     String cell = iterator.next().toString();
                     switch (i) {
