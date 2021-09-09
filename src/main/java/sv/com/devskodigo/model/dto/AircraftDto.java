@@ -6,9 +6,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AircraftDto {
+    private int aircraftId;
+    private String aircraftRegistration;
+    private String aircraftModel;
+    private int aircraftPassengersCapacity;
+    private float aircraftMaxFuel;
+    private int aircraftStatus;
 
-
-    public AircraftDto(int aircraftId, String aircraftRegistration,String aircraftModel,int aircraftPassengersCapacity, float aircraftMaxFuel, int aircraftStatus){
+    public AircraftDto(int aircraftId, String aircraftRegistration, String aircraftModel,
+                       int aircraftPassengersCapacity, float aircraftMaxFuel, int aircraftStatus) {
         this.aircraftId = aircraftId;
         this.aircraftRegistration = aircraftRegistration;
         this.aircraftModel = aircraftModel;
@@ -17,12 +23,6 @@ public class AircraftDto {
         this.aircraftStatus = aircraftStatus;
     }
 
-    public AircraftDto(){}
-
-    private int aircraftId;
-    private String aircraftRegistration;
-    private String aircraftModel;
-    private int aircraftPassengersCapacity;
-    private float aircraftMaxFuel;
-    private int aircraftStatus;
+    public AircraftDto() {
+    }
 }

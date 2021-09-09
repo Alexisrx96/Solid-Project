@@ -122,7 +122,7 @@ public class Flight implements DataOperations <FlightDto>{
         flight.setFlightStatus(rawData.nextInt());
         rawData.nextLine();
         System.out.println("Please type Aircraft id");
-        flight.setAircfratId(rawData.nextInt());
+        flight.setAircraftId(rawData.nextInt());
         rawData.nextLine();
         System.out.println("Please type Airline id");
         flight.setAirlineId(rawData.nextInt());
