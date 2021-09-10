@@ -17,10 +17,27 @@ CREATE TABLE IF NOT EXISTS city(
     CONSTRAINT FK_CIT_ID FOREIGN KEY(country_id) REFERENCES country(country_id) ON UPDATE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS user(
+    user_id INT NOT NULL AUTO_INCREMENT,
+    user_name VARCHAR(100) UNIQUE NOT NULL,
+    user_lastname VARCHAR(100) UNIQUE NOT NULL,
+    user_account VARCHAR(100) UNIQUE NOT NULL,
+    user_password VARCHAR(100) UNIQUE NOT NULL,
+    status_id INT NOT NULL,
+    PRIMARY KEY(user_id));
+
+
 CREATE TABLE  IF NOT EXISTS airline(
     airline_id INT NOT NULL AUTO_INCREMENT,
     airline_name VARCHAR(100) UNIQUE NOT NULL,
     PRIMARY KEY (airline_id)
+);
+
+CREATE TABLE status(
+    status_id INT NOT NULL AUTO_INCREMENT,
+    status_state VARCHAR(50) UNIQUE NOT NULL,
+    status_abbreviation VARCHAR(3) UNIQUE NOT NULL,
+    PRIMARY KEY (status_id)
 );
 ​
 CREATE TABLE IF NOT EXISTS aircraft(
@@ -47,7 +64,6 @@ CREATE TABLE IF NOT EXISTS flight(
     aircraft_id INT NOT NULL,
     airline_id INT NOT NULL,
     user_id INT NOT NULL,
-​
     PRIMARY KEY (flight_id),
     CONSTRAINT FK_COUN_DEP_ID FOREIGN KEY(flight_country_depart_id) REFERENCES country(country_id) ON UPDATE CASCADE,
     CONSTRAINT FK_CIT_DEP_ID FOREIGN KEY (flight_city_depart_id) REFERENCES city(city_id) ON UPDATE CASCADE,
@@ -56,9 +72,7 @@ CREATE TABLE IF NOT EXISTS flight(
     CONSTRAINT FK_STA_ID FOREIGN KEY (status_id) REFERENCES status(status_id) ON UPDATE CASCADE,
     CONSTRAINT FK_AIRC_ID FOREIGN KEY (aircraft_id) REFERENCES aircraft(aircraft_id) ON UPDATE CASCADE,
     CONSTRAINT FK_AIRL_ID FOREIGN KEY (airline_id) REFERENCES airline(airline_id) ON UPDATE CASCADE,
-    CONSTRAINT FK_USER_ID FOREIGN KEY (user_id) REFERENCES user(user_id) ON UPDATE CASCADE
-​
-);
+    CONSTRAINT FK_USER_ID FOREIGN KEY (user_id) REFERENCES user(user_id) ON UPDATE CASCADE);
 
 CREATE TABLE IF NOT EXISTS reportSummary(
     reportSummary_id INT NOT NULL AUTO_INCREMENT,

@@ -1,6 +1,6 @@
 package sv.com.devskodigo.services;
 
-import sv.com.devskodigo.controller.CountryController;
+import sv.com.devskodigo.controller.*;
 
 public class MenuItemAction {
     private int modelUserChosen = 0;
@@ -26,23 +26,24 @@ public class MenuItemAction {
                 break;
             case 3:
                 //CITY CRUD
-                //ViewCity viewCity = new ViewCity(co);
+                CityController cityController = new CityController(co);
                 break;
             case 4:
                 //AIRLINE CRUD
-                //ViewAirline viewAirline = new ViewAirline(co);
+                AirlineController airlineController = new AirlineController(co);
                 break;
             case 5:
                 //AIRCRAFT CRUD
-                //ViewAircraft viewAircraft = new ViewAircraft(co);
+                AircraftController aircraftController = new AircraftController(co);
                 break;
             case 6:
                 //FLIGHTS CRUD
-                //ViewFlights viewFlights = new ViewFlights(co);
+                FlightController flightsController = new FlightController(co);
                 break;
             case 7:
                 //REPORTS CRUD
                 //ViewReports viewReports = new ViewReports(co);
+                ReportSummaryController reportSummaryController = new ReportSummaryController(co);
                 break;
             case 8:
                 //EXIT
