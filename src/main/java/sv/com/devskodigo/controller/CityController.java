@@ -1,19 +1,21 @@
 package sv.com.devskodigo.controller;
 
-import sv.com.devskodigo.model.dao.CountryDao;
-import sv.com.devskodigo.model.dto.CountryDto;
+import sv.com.devskodigo.model.dao.CityDao;
+import sv.com.devskodigo.model.dto.CityDto;
 
 import java.util.Scanner;
 
-public class CountryController implements ICrudOperations {
-    private String countryName = "";
-    private float countryCoords = 0;
+public class CityController implements ICrudOperations {
+    private String cityName = "";
+    private float cityCoords = 0;
+    private int countryId = 0;
+
     private Scanner rawData;
     private int requestedAction;
     private int targetId = 0;
-    private CountryDto country;
+    private CityDto city;
 
-    public CountryController(int ra){
+    public CityController(int ra){
         this.requestedAction = ra;
         this.crudPipeline();
 
@@ -53,22 +55,24 @@ public class CountryController implements ICrudOperations {
         rawData = new Scanner(System.in);
         System.out.println("Please type the below requested information: ");
         System.out.println("Country's name");
-        countryName = rawData.nextLine();
-        System.out.println("Country's GPS Coords");
-        countryCoords = rawData.nextFloat();
+        cityName = rawData.nextLine();
+        System.out.println("GPS coords");
+        cityCoords = rawData.nextInt();
+        System.out.println("Country ID");
+        countryId = rawData.nextInt();
 
     }
 
     @Override
     public void saveData(){
-        CountryDao countryDao =  new CountryDao();
-        countryDao.insert(new CountryDto(0, this.countryName, this.countryCoords));
+        CityDao cityDao =  new CityDao();
+        cityDao.insert(new CityDto(0, this.cityName, this.cityCoords, this.countryId));
     }
 
     @Override
     public void viewData(){
-        CountryDao countryDao = new CountryDao();
-        for(var c: countryDao.getList()){
+        CityDao cityDao = new CityDao();
+        for(var c: cityDao.getList()){
             System.out.println(c);
         }
     }
@@ -79,34 +83,35 @@ public class CountryController implements ICrudOperations {
         int idFound = 0;
         System.out.println("Please type a valid id:");
         int idSearch = rawData.nextInt();
-        CountryDao countryDao = new CountryDao();
-        country = countryDao.read(idSearch);
-        if(country == null){
+        CityDao cityDao = new CityDao();
+        city = cityDao.read(idSearch);
+        if(city == null){
             System.out.println("No records found");
         }
         else{
             System.out.println("====================");
             System.out.println("Displaying information found:");
-            System.out.println("Country's name: "+"\t"+country.getCountryName());
-            System.out.println("Country's coords:"+"\t"+country.getCountryCoords());
+            System.out.println("City's name: "+"\t"+city.getCityName());
+            System.out.println("GPS coords: "+"\t"+city.getCityCoords());
+            System.out.println("Country Id: "+"\t"+city.getCountryId());
             System.out.println("====================");
-            idFound = country.getCountryId();
+            idFound = city.getCityId();
         }
         return idFound;
     }
 
     @Override
     public void deleteData(int id){
-        CountryDao countryDao = new CountryDao();
-        countryDao.delete(id);
+        CityDao cityDao = new CityDao();
+        cityDao.delete(id);
         System.out.println("Record deleted");
 
     }
 
     @Override
     public void updateData(int id){
-        CountryDao countryDao = new CountryDao();
-        countryDao.update(new CountryDto(id, this.countryName, this.countryCoords));
+        CityDao cityDao = new CityDao();
+        cityDao.update(new CityDto(id, this.cityName, this.cityCoords, this.countryId));
         System.out.println("Record updated");
     }
 

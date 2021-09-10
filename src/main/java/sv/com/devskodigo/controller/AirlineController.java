@@ -1,19 +1,18 @@
 package sv.com.devskodigo.controller;
 
-import sv.com.devskodigo.model.dao.CountryDao;
-import sv.com.devskodigo.model.dto.CountryDto;
+import sv.com.devskodigo.model.dao.AirlineDao;
+import sv.com.devskodigo.model.dto.AirlineDto;
 
 import java.util.Scanner;
 
-public class CountryController implements ICrudOperations {
-    private String countryName = "";
-    private float countryCoords = 0;
+public class AirlineController implements ICrudOperations {
+    private String airlineName = "";
     private Scanner rawData;
     private int requestedAction;
     private int targetId = 0;
-    private CountryDto country;
+    private AirlineDto airline;
 
-    public CountryController(int ra){
+    public AirlineController(int ra){
         this.requestedAction = ra;
         this.crudPipeline();
 
@@ -53,22 +52,20 @@ public class CountryController implements ICrudOperations {
         rawData = new Scanner(System.in);
         System.out.println("Please type the below requested information: ");
         System.out.println("Country's name");
-        countryName = rawData.nextLine();
-        System.out.println("Country's GPS Coords");
-        countryCoords = rawData.nextFloat();
+        airlineName = rawData.nextLine();
 
     }
 
     @Override
     public void saveData(){
-        CountryDao countryDao =  new CountryDao();
-        countryDao.insert(new CountryDto(0, this.countryName, this.countryCoords));
+        AirlineDao airlineDao =  new AirlineDao();
+        airlineDao.insert(new AirlineDto(0, this.airlineName));
     }
 
     @Override
     public void viewData(){
-        CountryDao countryDao = new CountryDao();
-        for(var c: countryDao.getList()){
+        AirlineDao airlineDao = new AirlineDao();
+        for(var c: airlineDao.getList()){
             System.out.println(c);
         }
     }
@@ -79,34 +76,33 @@ public class CountryController implements ICrudOperations {
         int idFound = 0;
         System.out.println("Please type a valid id:");
         int idSearch = rawData.nextInt();
-        CountryDao countryDao = new CountryDao();
-        country = countryDao.read(idSearch);
-        if(country == null){
+        AirlineDao airlineDao = new AirlineDao();
+        airline = airlineDao.read(idSearch);
+        if(airline == null){
             System.out.println("No records found");
         }
         else{
             System.out.println("====================");
             System.out.println("Displaying information found:");
-            System.out.println("Country's name: "+"\t"+country.getCountryName());
-            System.out.println("Country's coords:"+"\t"+country.getCountryCoords());
+            System.out.println("Airline's name: "+"\t"+airline.getAirlineName());
             System.out.println("====================");
-            idFound = country.getCountryId();
+            idFound = airline.getAirlineId();
         }
         return idFound;
     }
 
     @Override
     public void deleteData(int id){
-        CountryDao countryDao = new CountryDao();
-        countryDao.delete(id);
+        AirlineDao airlineDao = new AirlineDao();
+        airlineDao.delete(id);
         System.out.println("Record deleted");
 
     }
 
     @Override
     public void updateData(int id){
-        CountryDao countryDao = new CountryDao();
-        countryDao.update(new CountryDto(id, this.countryName, this.countryCoords));
+        AirlineDao airlineDao = new AirlineDao();
+        airlineDao.update(new AirlineDto(id, this.airlineName));
         System.out.println("Record updated");
     }
 
