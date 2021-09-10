@@ -7,7 +7,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AircraftDao extends DbConnection implements IInsert<AircraftDto>,IUpdate<AircraftDto>,IRead<AircraftDto,Integer>{
+public class AircraftDao extends DbConnection
+        implements IInsert<AircraftDto>,IUpdate<AircraftDto>,IRead<AircraftDto,Integer>, IDelete<Integer>{
 
     private static final String TABLE_NAME = "aircraft";
     //Column names
@@ -145,5 +146,28 @@ public class AircraftDao extends DbConnection implements IInsert<AircraftDto>,IU
         }
     }
 
+    @Override
+    public void delete(Integer idTarget) {
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            String query = "DELETE FROM %s WHERE %s = ?"
+                    .formatted(TABLE_NAME, AIRCRAFT_ID);
 
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setInt(1, idTarget);
+
+            preparedStmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

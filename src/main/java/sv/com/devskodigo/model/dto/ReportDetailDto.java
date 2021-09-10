@@ -13,6 +13,7 @@ public class ReportDetailDto {
     private String detailClassification;
     private String detailDescription;
     private int reportSummaryId;
+
     public ReportDetailDto(int detailId, Date detailDateTime, String detailClassification, String detailDescription, int reportSummaryId) {
         this.detailId = detailId;
         this.detailDateTime = detailDateTime;
@@ -21,5 +22,15 @@ public class ReportDetailDto {
         this.reportSummaryId = reportSummaryId;
     }
     public ReportDetailDto() {
+    }
+
+    @Override
+    public String toString() {
+        return "Record Information->" +
+                "Id=" + detailId +
+                ", Datetime=" + detailDateTime + '\'' +
+                ", Classification=" + detailClassification + '\'' +
+                ", Description=" + detailDescription +'\''+
+                ", Report=" +reportSummaryId;
     }
 }

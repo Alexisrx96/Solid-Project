@@ -25,19 +25,6 @@ public class ReportDetailToXlsx implements DataOperations<ReportDetailDto> {
         readDataset();
     }
 
-    public static void main(String[] args) {
-
-        ReportDetailToXlsx toXlsx = new ReportDetailToXlsx();
-        ReportDetailDto rd = new ReportDetailDto();
-        rd.setDetailId(1);
-        rd.setDetailClassification("my Clasification");
-        rd.setDetailDescription("my Description");
-        rd.setDetailDateTime(new Date());
-        //rd.setReportSummary(new ReportSummaryDto());
-        //rd.getReportSummary().setReportId(1);
-        toXlsx.addData(rd);
-        toXlsx.read();
-    }
 
     @Override
     public void readDataset() {

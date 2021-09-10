@@ -26,4 +26,14 @@ public class ReportSummaryDto {
     }
     //Optional
     //private List<ReportDetailDto> reportDetails;
+
+    @Override
+    public String toString() {
+        return "Record Information->" +
+                "Id=" + reportId +
+                ", Datetime=" + reportDateTime + '\'' +
+                ", Flight=" + flightId + '\'' +
+                ", User=" + userId +'\''+
+                ", Report Status=" +reportStatusId;
+    }
 }

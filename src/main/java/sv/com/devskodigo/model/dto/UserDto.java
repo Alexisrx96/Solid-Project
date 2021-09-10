@@ -24,4 +24,15 @@ public class UserDto {
     private String userPassword;
     private int userStatus;
 
+
+    @Override
+    public String toString() {
+        return "Record Information->" +
+                "Id=" + userId +
+                ", Name=" + userFirstName + '\'' +
+                ", LastName=" + userLastName + '\'' +
+                ", Account=" + userAccountName +'\''+
+                ", Password=" +userPassword +'\''+
+                ", Status=" +userStatus;
+    }
 }

@@ -21,4 +21,13 @@ public class CityDto {
         this.cityCoords = cityCoords;
         this.countryId = countryId;
     }
+
+    @Override
+    public String toString() {
+        return "Record Information->" +
+                "Id=" + cityId +
+                ", Name=" + cityName + '\'' +
+                ", GPS Coords=" + cityCoords + '\'' +
+                ", Country=" + countryId;
+    }
 }
