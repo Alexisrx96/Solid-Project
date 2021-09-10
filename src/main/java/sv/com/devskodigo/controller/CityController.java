@@ -54,7 +54,7 @@ public class CityController implements ICrudOperations {
     public void getData(){
         rawData = new Scanner(System.in);
         System.out.println("Please type the below requested information: ");
-        System.out.println("Country's name");
+        System.out.println("City's name");
         cityName = rawData.nextLine();
         System.out.println("GPS coords");
         cityCoords = rawData.nextInt();

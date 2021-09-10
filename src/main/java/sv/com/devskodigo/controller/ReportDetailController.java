@@ -61,7 +61,7 @@ public class ReportDetailController implements ICrudOperations {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         rawData = new Scanner(System.in);
         System.out.println("Please type the below requested about the Incident's Detail: ");
-        System.out.println("Incident's date/time:");
+        System.out.println("Incident's date/time: (yyyy-MM-dd HH:mm:ss)");
         try{
             reportDetailDateTime = dateFormat.parse(rawData.nextLine());
         }catch(ParseException pe){

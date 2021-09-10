@@ -67,7 +67,7 @@ public class FlightController implements ICrudOperations {
         System.out.println("Date Time of Departure:");
         try{
             flightDateTimeDepart = dateFormat.parse(rawData.nextLine());
-            System.out.println("Date Time of Arrival:");
+            System.out.println("Date Time of Arrival: (yyyy-MM-dd HH:mm:ss)");
             flightDateTimeArrival = dateFormat.parse(rawData.nextLine());
         }catch(ParseException pe){
             System.out.println("Error parsing date-time information");

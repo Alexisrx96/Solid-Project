@@ -59,7 +59,7 @@ public class ReportSummaryController implements ICrudOperations {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         rawData = new Scanner(System.in);
         System.out.println("Please type the below requested about the Report: ");
-        System.out.println("Report's date/time:");
+        System.out.println("Report's date/time: (yyyy-MM-dd HH:mm:ss)");
         try{
             reportSummaryDateTime = dateFormat.parse(rawData.nextLine());
         }catch(ParseException pe){

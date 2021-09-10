@@ -1,6 +1,6 @@
-CREATE DATABASE airport;
+CREATE DATABASE flights;
 
-USE airport;
+USE flights;
 
 CREATE TABLE status(
 status_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
