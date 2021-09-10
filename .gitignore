@@ -1,9 +1,12 @@
 *.class
 *.xlsx
 target/classes
+target/classes/sv/com/devskodigo/model/dto/*.class
+target/classes/sv/com/devskodigo/model/dao/*.class
 /.classpath
 /.factorypath
 /.project
 /.settings
 /.idea
+.idea/sonarlint/issuestore/index.pb
 /src/main/java/sv/com/devskodigo/model/dao/flights.properties

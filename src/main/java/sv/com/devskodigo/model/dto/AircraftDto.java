@@ -25,4 +25,16 @@ public class AircraftDto {
 
     public AircraftDto() {
     }
+
+
+    @Override
+    public String toString() {
+        return "Record Information->" +
+                "Id=" + aircraftId +
+                ", Registry Number=" + aircraftRegistration + '\'' +
+                ", Model=" + aircraftModel + '\'' +
+                ", Maximum Passengers=" + aircraftPassengersCapacity + '\''+
+                ", Maximum Fuel=" + aircraftMaxFuel + '\''+
+                ", Status=" + aircraftStatus;
+    }
 }

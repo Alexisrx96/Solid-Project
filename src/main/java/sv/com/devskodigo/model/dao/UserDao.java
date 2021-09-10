@@ -6,7 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDao extends DbConnection implements IInsert<UserDto>,IUpdate<UserDto>,IRead<UserDto,Integer>{
+public class UserDao extends DbConnection
+        implements IInsert<UserDto>,IUpdate<UserDto>,IRead<UserDto,Integer>, IDelete<Integer>{
 
     private static final String TABLE_NAME = "user";
     //Column names
@@ -144,4 +145,28 @@ public class UserDao extends DbConnection implements IInsert<UserDto>,IUpdate<Us
         }
     }
 
+    @Override
+    public void delete(Integer idTarget) {
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            String query = "DELETE FROM %s WHERE %s = ?"
+                    .formatted(TABLE_NAME, USER_ID);
+
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setInt(1, idTarget);
+
+            preparedStmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

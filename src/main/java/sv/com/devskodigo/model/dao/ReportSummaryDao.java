@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReportSummaryDao extends DbConnection
-        implements IInsert<ReportSummaryDto>, IUpdate<ReportSummaryDto>, IRead<ReportSummaryDto, Integer> {
+        implements IInsert<ReportSummaryDto>, IUpdate<ReportSummaryDto>, IRead<ReportSummaryDto, Integer>, IDelete<Integer> {
+
     private static final String TABLE_NAME = "reportSummary";
     //Column names
     private static final String SUMMARY_ID = "reportSummary_id";
@@ -122,6 +123,31 @@ public class ReportSummaryDao extends DbConnection
             preparedStmt.setInt(3, t.getUserId());
             preparedStmt.setInt(4, t.getReportStatusId());
             preparedStmt.setInt(5, t.getReportId());
+
+            preparedStmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void delete(Integer idTarget) {
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            String query = "DELETE FROM %s WHERE %s = ?"
+                    .formatted(TABLE_NAME, SUMMARY_ID);
+
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setInt(1, idTarget);
 
             preparedStmt.executeUpdate();
         } catch (SQLException e) {

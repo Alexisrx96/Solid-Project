@@ -38,4 +38,18 @@ public class FlightDto {
     public FlightDto() {
     }
 
+    @Override
+    public String toString() {
+        return "Record Information->" +
+                "Id=" + flightId +
+                ", Datetime Depart=" + flightDateTimeDep + '\'' +
+                ", Datetime Arrival=" + flightDateTimeArr + '\'' +
+                ", Current Weather=" + flightWeatherRpt +'\''+
+                ", Depart=" + flightCityIdDep +'\''+
+                ", Arrival="+ flightCityIdArr +'\''+
+                ", Status="+ flightStatus +'\''+
+                ", Aircraft="+ aircraftId +'\''+
+                ", Airline="+ airlineId +'\''+
+                ", User=" +userId;
+    }
 }

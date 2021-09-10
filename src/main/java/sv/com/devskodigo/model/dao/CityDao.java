@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CityDao extends DbConnection
-        implements IInsert<CityDto>,IUpdate<CityDto>,IRead<CityDto,Integer>{
+        implements IInsert<CityDto>,IUpdate<CityDto>,IRead<CityDto,Integer>, IDelete<Integer> {
     private static final String TABLE_NAME = "city";
     //Column names
     private static final String CITY_ID = "city_id";
@@ -129,4 +129,28 @@ public class CityDao extends DbConnection
         }
     }
 
+    @Override
+    public void delete(Integer idTarget) {
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            String query = "DELETE FROM %s WHERE %s = ?"
+                    .formatted(TABLE_NAME, CITY_ID);
+
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setInt(1, idTarget);
+
+            preparedStmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

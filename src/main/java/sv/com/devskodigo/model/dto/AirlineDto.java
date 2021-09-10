@@ -16,4 +16,11 @@ public class AirlineDto {
 
     public AirlineDto() {
     }
+
+    @Override
+    public String toString() {
+        return "Record Information->" +
+                "Id=" + airlineId +
+                ", Name=" + airlineName;
+    }
 }
