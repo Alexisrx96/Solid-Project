@@ -18,4 +18,12 @@ public class CountryDto {
 
     public CountryDto() {
     }
+
+    @Override
+    public String toString() {
+        return "Record Information->" +
+                "Id=" + countryId +
+                ", Name='" + countryName + '\'' +
+                ", GPS Coords=" + countryCoords;
+    }
 }

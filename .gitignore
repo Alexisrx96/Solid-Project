@@ -1,0 +1,9 @@
+*.class
+*.xlsx
+target/classes
+/.classpath
+/.factorypath
+/.project
+/.settings
+/.idea
+/src/main/java/sv/com/devskodigo/model/dao/flights.properties
